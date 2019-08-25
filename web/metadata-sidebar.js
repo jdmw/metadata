@@ -1,64 +1,45 @@
 document.addEventListener('DOMContentLoaded', function() {
   
-
-  var showEntity = function(e){
-    var eid = e.getAttribute('entityid')
-    var data = api.entity.getById(eid)
-    
-    if ( data ) {
-      mainPaneData.entity = data 
-      mainPaneData.metadataList = data.listMetadata()
-      debugger;
+  var getUrlQuery = function(path){
+    var querystring = path || location.search
+    // querystring can be 
+    // 1. '?'
+    // 2. '?a=1&b=2'
+    // 3. <empty>
+    var params = {}
+    if ( querystring ){
+      var index = querystring.indexOf('?')
+      if( index != -1 ) {
+        querystring = querystring.substring(index+1)
+      }
+      if( querystring ){ 
+        for(var kv of querystring.split('&')){
+          var kvarr = kv.split('=')
+          if( kvarr && kvarr.length > 0 && kvarr[0]){
+            params[kvarr[0]] = kvarr[1] || ''
+          }
+        }
+      }
     }
+    return params  
   }
   
-  var $entityList = document.getElementById('entity-list');
-  //createEntityList($entityList)
-  
-  var clickOnEntityList = (function(){
-    var subPath = function(path,$container){
-      var thisIndex = 0;
-      for ( ;thisIndex < path.length;thisIndex++){
-        if (path[thisIndex] == $container) break ;
-      }
-      if (event.path[0] == window) {
-        return path.slice(thisIndex+1)
-      }else{
-        return path.slice(0,thisIndex)
-      }
-    }
+  var mainPaneData = {}
+  var init = function(){
+    var entities = api.entity.load()
+    var entityid = getUrlQuery()['entityid']
+    var entity = entityid ? api.entity.getById(entityid): (entities[0]||{} )
+    var metadataList = entity && entity.id ? entity.listMetadata() : []
     
-    return function(event){
-      // unactive all
-      $entityList.querySelectorAll('.active').forEach(function(e){
-        e.className = e.className.replace(/active/g,'').replace(/bd-sidenav-active/g,'').trim()
-      })
-      // active clicked area
-      subPath(event.path,this.$el).forEach(function(e){
-        switch(e.tagName){
-          case 'DIV' : e.className += ' active';break;
-          case 'LI' : e.className += ' active bd-sidenav-active';break;
-          case 'A' : showEntity(e)
-        }
-      })
-    }
-  })()
-
-  window.entities = api.entity.load()
-  mainPaneData = {'entities':entities,entity:window.entities[0]||{}}
-  mainPaneData.metadataList = mainPaneData.entity.listMetadata()
+    mainPaneData.entities = entities
+    mainPaneData.entity = entity
+    mainPaneData.metadataList = metadataList
+    debugger
+    
+  }
+  init()
   new Vue({
-    el: '#entity-list',
-    data : mainPaneData,
-    methods : {
-      clickOnEntityList : clickOnEntityList,
-      isActive : function(e){
-        return !!e.active
-      }
-    }
-  })
-  var main = new Vue({
-    el: 'main',
-    data: mainPaneData
-  })
+      el: '.container-fluid',
+      data : mainPaneData
+    })
 });

@@ -11,10 +11,39 @@ api.entity = (function(){
     this.children = []
     this.active = false 
     
+
+  
+    var concatBusTechProperty = function(data){
+      if (data && data.busDatatype && data.busDatatype >= 0) {
+        var bus = ''  // 业务属性
+        switch(data.busDatatype){
+          case 0 : bus = '文本'
+          case 1 : bus = '数值'
+          case 2 : bus = '枚举'
+          case 3 : bus = '日期'
+          case 4 : bus = '时间' 
+        }
+        data.busDatatypeName = bus
+        if ( data.busLength ) bus += ' ' + data.busLength
+        if ( data.busUnit ) bus += ' ' + data.busUnit
+        data['busproperty'] = bus
+      }
+      if (data && data.techDatatype && data.techDatatype >= 0) {
+        var techproperty = data.techDatatype  // 业务属性
+        if( data.techLength) {
+          var arr = [data.techLength]
+          if(data.techPrecision) arr.add(data.techPrecision) 
+          techproperty += '(' + arr.join(',') + ')'
+        }
+        data['techproperty'] = techproperty
+      }
+      return data 
+    }
     this.listMetadata = function(){
       var rst = []
       for ( var m of metadata ) {
-        if ( m.entityid = this.id){
+        if ( m.entityid == this.id){
+          concatBusTechProperty(m)
           rst.push(m)
         }
       }
