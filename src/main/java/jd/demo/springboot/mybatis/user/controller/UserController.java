@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import jd.demo.springboot.mybatis.user.bean.UserReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -61,13 +62,13 @@ public class UserController {
 	@PostMapping("update")
 	public Map<String,String> updateUser(@Valid @RequestBody UserReq userReq){
 		
-		if(userReq.getId() == null || "".equals(userReq.getId())) {
+		/*if(userReq.getId() == null || "".equals(userReq.getId())) {
 			throw new CommonException("0000", "更新时ID不能为空");
-		}
+		}*/
 		User user = new User();
 		user.setCode(userReq.getCode());
 		user.setName(userReq.getName());
-		user.setId(Long.parseLong(userReq.getId()));		
+		user.setId(userReq.getId());
 		userService.updateById(user);
 		Map<String,String> result = new HashMap<String,String>();
 		result.put("respCode", "01");
@@ -79,7 +80,7 @@ public class UserController {
 	public Map<String,Object> getUser(@PathVariable("id") String id){
 		//查询
 		User user = userService.selectById(id);
-		if(user == null) {
+		/*if(user == null) {
 			throw new CommonException("0001", "用户ID：" + id + "，未找到");
 		}
 		UserResp resp = UserResp.builder()
@@ -87,11 +88,11 @@ public class UserController {
 				.code(user.getCode())
 				.name(user.getName())
 				.status(user.getStatus())
-				.build();
+				.build();*/
 		Map<String,Object> result = new HashMap<String,Object>();
 		result.put("respCode", "01");
 		result.put("respMsg", "成功");
-		result.put("data", resp);
+		result.put("data", user);
 		return result;
 	}
 	

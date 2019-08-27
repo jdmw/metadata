@@ -32,9 +32,9 @@ public class MysqlGenerator {
 	private static final String AUTHOR = "hubery";
 
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
-	private static final String URL = "jdbc:mysql://127.0.0.1:3306/demo?useUnicode=true&characterEncoding=UTF-8";
-	private static final String USER_NAME = "user";
-	private static final String PASSWORD = "pass";
+	private static final String URL = "jdbc:mysql://127.0.0.1:3306/md?useUnicode=true&characterEncoding=UTF-8";
+	private static final String USER_NAME = "root";
+	private static final String PASSWORD = "12345678";
 
 	/**
 	 * <p>
