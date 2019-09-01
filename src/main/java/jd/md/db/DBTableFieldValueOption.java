@@ -1,14 +1,15 @@
-package jd.md.jdbc;
+package jd.md.db;
 
 
 import java.util.HashMap;
 import java.util.Map;
 
-public interface FieldValueOption<V>{
+public interface DBTableFieldValueOption<V>{
 
     String getName();
 
     V getValue();
+
 
 }
 

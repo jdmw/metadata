@@ -1,8 +1,8 @@
 package jd.md.examble.db.cst;
 
-import jd.md.jdbc.FieldValueOption;
+import jd.md.db.DBTableFieldValueOption;
 
-public enum Sex implements FieldValueOption<Byte>{
+public enum Sex implements  DBTableFieldValueOption<Byte>{
     Male("Male",(byte)1),Female("Female",(byte)2) ;
 
     private String name ;

@@ -1,29 +1,32 @@
 package jd.md.examble.db.dao;
 
-import jd.demo.springboot.mybatis.user.entity.User;
 import jd.md.examble.db.entity.UserDO;
-import jd.md.examble.db.table.UserFields;
+import static jd.md.examble.db.table.TableUser.*;
+
+import jd.md.examble.db.table.TableUser;
+import jd.md.jdbc.BaseDao;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by huangxia on 2019/8/29.
  */
-public class UserDao {
+@Component
+public class UserDao extends BaseDao<UserDO> {
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
 
-    public UserDO getById(int id){
+    public UserDao(JdbcTemplate jdbcTemplate) {
+        super(jdbcTemplate, TABLE,UserDO.class);
+    }
+
+/*    public UserDO getById(int id){
         String sql = "select * from user where id = ? " ;
         return jdbcTemplate.queryForObject(sql,new Object[]{id},(rs,num)->{
             UserDO userDO = new UserDO();
-            userDO.setId(rs.getInt(UserFields.ID.getName()));
-            userDO.setName(rs.getString(UserFields.NAME.getName()));
-            userDO.setName(rs.getString(UserFields.NAME.getName()));
-            userDO.setAge(rs.getInt(UserFields.AGE.getName()));
-            //userDO.setSex(rs.getByte(UserFields.SEX.getName()));
+            setValue(userDO,rs);
             return userDO;
         }) ;
-    }
+    }*/
 }

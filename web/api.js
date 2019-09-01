@@ -11,8 +11,6 @@ api.entity = (function(){
     this.children = []
     this.active = false 
     
-
-  
     var concatBusTechProperty = function(data){
       if (data && data.busDatatype && data.busDatatype >= 0) {
         var bus = ''  // 业务属性
