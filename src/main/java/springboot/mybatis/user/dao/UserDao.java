@@ -1,6 +1,6 @@
-package jd.demo.springboot.mybatis.user.dao;
+package springboot.mybatis.user.dao;
 
-import jd.demo.springboot.mybatis.user.entity.User;
+import springboot.mybatis.user.entity.User;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**

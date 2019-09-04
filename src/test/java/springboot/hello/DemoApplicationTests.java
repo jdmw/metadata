@@ -1,4 +1,4 @@
-package jd.demo.springboot.hello;
+package springboot.hello;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

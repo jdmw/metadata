@@ -1,4 +1,4 @@
-package jd.demo.springboot.mybatis.user.controller;
+package springboot.mybatis.user.controller;
 
 
 import java.util.HashMap;
@@ -6,7 +6,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
-import jd.demo.springboot.mybatis.user.bean.UserReq;
+import springboot.mybatis.user.bean.UserReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.baomidou.mybatisplus.plugins.Page;
 
-import jd.demo.springboot.mybatis.user.entity.User;
-import jd.demo.springboot.mybatis.user.service.IUserService;
+import springboot.mybatis.user.entity.User;
+import springboot.mybatis.user.service.IUserService;
 
 /**
  * <p>

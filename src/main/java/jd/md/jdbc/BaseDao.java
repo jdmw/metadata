@@ -3,7 +3,7 @@ package jd.md.jdbc;
 import jd.md.db.DBTable;
 import jd.md.db.DBTableField;
 import jd.md.db.TableEntity;
-import jd.md.examble.db.entity.UserDO;
+import jd.util.CUt;
 import jd.util.lang.reflect.ReflectUt;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -75,9 +75,11 @@ public abstract class BaseDao<D extends TableEntity> {
     };
 
     public D getById(int id){
-        String sql = "select * from user where id = ? " ;
-        return jdbcTemplate.queryForObject(sql,new Object[]{id},rowMapper) ;
+        String sql = "select * from user where id = ? limit 1" ;
+        return CUt.getFirst(jdbcTemplate.query(sql,new Object[]{id},rowMapper)) ;
     }
+
+
 
     public void select(DBTableField[] fields){
 

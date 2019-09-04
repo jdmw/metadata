@@ -1,13 +1,10 @@
-package jd.demo.springboot.mybatis.user.entity;
+package springboot.mybatis.user.entity;
 
 import java.util.Date;
 import com.baomidou.mybatisplus.activerecord.Model;
 import java.io.Serializable;
 
-import com.baomidou.mybatisplus.annotations.Version;
-
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**

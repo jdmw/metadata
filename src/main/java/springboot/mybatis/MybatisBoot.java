@@ -1,4 +1,4 @@
-package jd.demo.springboot.mybatis;
+package springboot.mybatis;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.Configuration;

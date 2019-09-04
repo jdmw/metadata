@@ -1,4 +1,4 @@
-package jd.demo.springboot.cfg;
+package springboot.cfg;
 
 import java.util.List;
 
@@ -9,7 +9,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
 
 import lombok.Data;
 

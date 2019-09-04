@@ -1,4 +1,4 @@
-package jd.demo.springboot.mybatis;
+package springboot.mybatis;
 
 import java.io.File;
 import java.util.ArrayList;

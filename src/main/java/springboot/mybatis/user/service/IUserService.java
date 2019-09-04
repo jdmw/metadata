@@ -1,6 +1,6 @@
-package jd.demo.springboot.mybatis.user.service;
+package springboot.mybatis.user.service;
 
-import jd.demo.springboot.mybatis.user.entity.User;
+import springboot.mybatis.user.entity.User;
 import com.baomidou.mybatisplus.service.IService;
 
 /**
